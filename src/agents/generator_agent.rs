@@ -8,7 +8,7 @@ use std::ptr::null;
 pub async fn send_message(prompt: &str) -> Result<String, Box<dyn std::error::Error>> {
     let client = Client::new();
     let url = "http://localhost:11434/api/chat";
-    let system_content = fs::read_to_string("config/generator_system_content.txt");
+    let system_content = fs::read_to_string("generator_model_system_content.txt").expect("");
     let time_stamp = Utc::now().to_rfc3339();
 
     let new_message = OllamaMessage {
@@ -18,14 +18,10 @@ pub async fn send_message(prompt: &str) -> Result<String, Box<dyn std::error::Er
 
     ollama_message::prepare_and_insert_message("app.db", 1, "user", prompt);
 
-    let mut messages:Vec<OllamaMessage> = vec![
-        OllamaMessage {
-            role: "system".into(),
-            content: "You are a dungeon master. Your job is to create a simple narative for the user as they explore the world you are narating to them.
-            Your job is not to make decisions for the player but to forge the world around them.
-            Although you can still add some extra flavor to their actions.".into(),
-        },
-    ];
+    let mut messages: Vec<OllamaMessage> = vec![OllamaMessage {
+        role: "system".into(),
+        content: system_content.into(),
+    }];
 
     messages.push(new_message);
 

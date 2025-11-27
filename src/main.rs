@@ -2,7 +2,6 @@ mod agents;
 mod db;
 mod ollama_types;
 
-use agents::chat_bot;
 use agents::generator_agent;
 use chrono::{DateTime, Utc};
 use db::campaign;
@@ -26,19 +25,27 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // send_message("What did I ask you now again?").await;
     //get_player();
 
-    //create_ollama_message();
+    //create_ollama_message_debug();
 
-    match generator_agent::send_message(
+    send_prompt(
         "I look around in search for a path where I can sneak into the center building. Alternativly I look for cellar leading underground of somee kind.",
-    ).await {
-        Ok(message) => println!("Ollama: {}", message),
-        Err(e) => eprintln!("Error sending message: {}", e),
-    };
+    ).await;
 
     Ok(())
 }
 
-fn create_ollama_message() {
+async fn send_prompt(prompt: &str) -> Result<String, String> {
+    let mut message: String = "".to_string();
+
+    match generator_agent::send_message(prompt).await {
+        Ok(message) => println!("Ollama: {}", message),
+        Err(e) => eprintln!("Error sending message: {}", e),
+    };
+
+    Ok(message)
+}
+
+fn create_ollama_message_debug() {
     //placeholder content
     let database = "app.db";
     create_campaign_table(database);
@@ -92,13 +99,4 @@ fn get_player() -> Result<(), Box<dyn std::error::Error>> {
 async fn create_new_campaign() {
     character::create_characters_table("campaign", 1);
     println!("Table created")
-}
-
-async fn send_message(prompt: &str) {
-    println!("Me: {}", prompt);
-
-    match chat_bot::send_message(prompt).await {
-        Ok(answer) => println!("Mistral: {}", answer),
-        Err(e) => eprintln!("Error: {}", e),
-    }
 }
