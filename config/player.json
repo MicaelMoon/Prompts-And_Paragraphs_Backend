@@ -1,0 +1,16 @@
+{
+    "name": "Micael",
+    "stats": {
+        "max_hp": 100,
+        "current_hp": 100,
+        "max_defense": 5,
+        "current_defense": 5,
+        "max_attack": 15,
+        "current_attack": 15
+    },
+    "current_location": {
+        "location_namee": "goblin_dungeon",
+        "type": "dungeon",
+        "danger_level": "moderate"
+    }
+}

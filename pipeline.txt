@@ -1,0 +1,7 @@
+Impliment SQL
+
+version 0.1:
+    - The application will handle a simple dungeon adventure.
+    - All chats are saveed in the database = set up basic database structure.
+    - models:
+        - generator

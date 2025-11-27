@@ -1,0 +1,6 @@
+{
+    "message": "string",
+    "response": "string",
+    "past_player_event_refferences": "string",
+    "world_refferences": "string"
+}
