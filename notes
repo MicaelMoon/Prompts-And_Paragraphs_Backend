@@ -1,2 +1,4 @@
 url endpoint "chat" is for a full chat while "generate" is for one answer
 Potential for a quest log.
+An event database?
+Save game state json object / table
