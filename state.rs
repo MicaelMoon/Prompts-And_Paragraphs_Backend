@@ -28,7 +28,7 @@ struct OllamaMessage {
 
 #[derive(Deserialize, Serialize)]
 struct PlayerStats {
-    entity_properties: EntityProperties,
+    entity: Entity,
 }
 
 #[derive(Deserialize, Serialize)]

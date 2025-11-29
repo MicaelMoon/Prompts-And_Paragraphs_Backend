@@ -1,0 +1,60 @@
+WorldState = {
+    local_state: LocalState
+}
+
+LocalState = {
+    player_stats: Player,
+    chats: Vec<Chats>,
+    local_allied_entities: Vec<Entity>,
+    local_neutral_entities: Vec<Entity>,
+    local_hostile_entities: Vec<Entity>,
+}
+
+Chats = {
+    user_response: OllamaMessage,
+    assistant_response: OllamaMessage,
+}
+
+OllamaMessage = {
+    role: string,
+    content: string,
+}
+
+Player = {
+    entity: Entity
+}
+
+Entity = {
+    entity_properties: EntityProperties
+}
+
+EntityProperties = {
+    name: string,
+    combat_stats: CombatStats,
+    skills: Vec<Skill>
+}
+
+CombatStats = {
+    max_health: number,
+        // Represents the maximum hit points of the entity.
+    current_health: number,
+        // Represents the current hit points of the entity.
+        // When the entity takes damage, the current_health should be subtracted and not the max_health.
+        // If the entity were to get healed, the current_health should be raised and not the max_health
+        // If the entity were to get healed, the current_health will not be raised above the max_health UNLESS stated on the heal as an ability description or a passive ability/buff on the healed entity or caster of some kind.
+        // In cases where the entity would get temporary hit points (for example a shield), the current_health can go above max_health.
+    max_attack: number,
+    current_attack: number,
+    max_defense: number,
+    current_defense: number
+}
+
+Skill = {
+    cooldown: Cooldown,
+    description: string,
+}
+
+Cooldown = {
+    combat_rounds: number,
+    game_time: string
+}

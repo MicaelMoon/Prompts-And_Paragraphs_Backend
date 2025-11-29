@@ -15,8 +15,32 @@
                 }
             },
             "chats": {
-                
-            }
+                "user_response":{
+                    "role": "string",
+                    "content": "string"
+                },
+                "assistant_response":{
+                    "role": "string",
+                    "content": "string"
+                }
+            },
+            "local_allied_entities":[
+                {
+                    "enetity_properties":{
+                        "name": "string",
+                        "combat_stats":{
+                        "max_health": 1,
+                        "current_health": 1,
+                        "max_attack": 1,
+                        "current_attack": 1,
+                        "max_defense": 1,
+                        "current_defense": 1
+                    }
+                    }
+                }
+            ],
+            "local_neutral_entities":[],
+            "local_hostile_entities":[]
         }
     }
 }
